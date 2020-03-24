@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +50,8 @@ public class UIConfiguracion extends javax.swing.JFrame {
         btnprobar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(500, 250));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("CONFIGURACION");
@@ -167,17 +170,25 @@ public class UIConfiguracion extends javax.swing.JFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         try {
             archivo.createNewFile();
-            FileWriter fw = new FileWriter(archivo,true);
-                BufferedWriter bw=new BufferedWriter(fw);
-                bw.write("jdbc:"+cmbmotor.getSelectedItem()+"://"+txtservidor.getText()+"/practica?useServerPrepStmts=true"+","+ txtuser.getText()+","+ txtpass.getText());
-                bw.flush();//
+            FileWriter fw = new FileWriter(archivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("jdbc:" + cmbmotor.getSelectedItem() + "://" + txtservidor.getText() + "/practica?useServerPrepStmts=true" + "," + txtuser.getText() + "," + txtpass.getText());
+            bw.flush();//
         } catch (IOException ex) {
             Logger.getLogger(UIConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprobarActionPerformed
-        // TODO add your handling code here:
+
+        if (cmbmotor.getSelectedItem().equals("mysql") && txtservidor.getText().equals("localhost") && txtuser.getText().equals("root") && txtpass.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Prueba de conexión:\n Aprobada");
+            this.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Prueba de conexión:\n Reprobada");
+
+        }
+
     }//GEN-LAST:event_btnprobarActionPerformed
 
     /**

@@ -23,6 +23,7 @@ public class UIinicio extends javax.swing.JFrame {
      * Creates new form UIinicio
      */
     public UIinicio() {
+        
         initComponents();
         tiempo.start();
         
@@ -76,6 +77,7 @@ public class UIinicio extends javax.swing.JFrame {
         lblinicio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(500, 250));
 
         lblinicio.setFont(new java.awt.Font("Nirmala UI", 0, 18)); // NOI18N
         lblinicio.setText("-------------");
