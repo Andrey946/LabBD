@@ -27,28 +27,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Mllegadas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="LLegadas"/>
+                <Property name="text" type="java.lang.String" value="Llegadas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MllegadasActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="Mconfiguracion">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MconfiguracionActionPerformed"/>
-          </Events>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="Mconfigbd">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Config.BD"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MconfigbdActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

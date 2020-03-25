@@ -5,6 +5,7 @@
  */
 package INTERFACES;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -19,6 +20,12 @@ public class Frmregistro extends javax.swing.JFrame {
     public Frmregistro() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        ImageIcon vehi = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\vehi.png");
+        Mvehiculos.setIcon(new ImageIcon(vehi.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon start = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\start.png");
+        Msalidas.setIcon(new ImageIcon(start.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon end = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\end.png");
+        Mllegadas.setIcon(new ImageIcon(end.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
     }
 
     /**
@@ -36,8 +43,6 @@ public class Frmregistro extends javax.swing.JFrame {
         Mvehiculos = new javax.swing.JMenuItem();
         Msalidas = new javax.swing.JMenuItem();
         Mllegadas = new javax.swing.JMenuItem();
-        Mconfiguracion = new javax.swing.JMenu();
-        Mconfigbd = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
@@ -60,7 +65,7 @@ public class Frmregistro extends javax.swing.JFrame {
         });
         Mregistrar.add(Msalidas);
 
-        Mllegadas.setText("LLegadas");
+        Mllegadas.setText("Llegadas");
         Mllegadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MllegadasActionPerformed(evt);
@@ -69,23 +74,6 @@ public class Frmregistro extends javax.swing.JFrame {
         Mregistrar.add(Mllegadas);
 
         Menubar.add(Mregistrar);
-
-        Mconfiguracion.setText("Configuración");
-        Mconfiguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MconfiguracionActionPerformed(evt);
-            }
-        });
-
-        Mconfigbd.setText("Config.BD");
-        Mconfigbd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MconfigbdActionPerformed(evt);
-            }
-        });
-        Mconfiguracion.add(Mconfigbd);
-
-        Menubar.add(Mconfiguracion);
 
         setJMenuBar(Menubar);
 
@@ -104,7 +92,9 @@ public class Frmregistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MllegadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MllegadasActionPerformed
-        // TODO add your handling code here:
+         Vista.vistaLlegadas Lle = new Vista.vistaLlegadas();
+        escritorio.add(Lle);
+        Lle.show();// TODO add your handling code here:
     }//GEN-LAST:event_MllegadasActionPerformed
 
     private void MvehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MvehiculosActionPerformed
@@ -113,24 +103,10 @@ public class Frmregistro extends javax.swing.JFrame {
         c.show();
     }//GEN-LAST:event_MvehiculosActionPerformed
 
-    private void MconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MconfiguracionActionPerformed
-
-    }//GEN-LAST:event_MconfiguracionActionPerformed
-
-    private void MconfigbdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MconfigbdActionPerformed
-        UIConfiguracion config = new UIConfiguracion();
-        this.dispose();
-        config.setVisible(true);
-        while (config.isVisible()) {
-            this.dispose();
-        }
-        this.setVisible(true);
-    }//GEN-LAST:event_MconfigbdActionPerformed
-
     private void MsalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsalidasActionPerformed
         Vista.vistaSalidas Sal = new Vista.vistaSalidas();
         escritorio.add(Sal);
-        Sal.show();            
+        Sal.show();
     }//GEN-LAST:event_MsalidasActionPerformed
 
     /**
@@ -169,8 +145,6 @@ public class Frmregistro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Mconfigbd;
-    private javax.swing.JMenu Mconfiguracion;
     private javax.swing.JMenuBar Menubar;
     private javax.swing.JMenuItem Mllegadas;
     private javax.swing.JMenu Mregistrar;
