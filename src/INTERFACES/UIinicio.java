@@ -96,10 +96,11 @@ public class UIinicio extends javax.swing.JFrame {
             System.out.println("\"jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true\", \"root\", \"\"");
             //System.out.println(bw.readLine());
             String s=bw.readLine();
-            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/practica?useServerPrepStmts=true", "root", "");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
             
             this.sentencias = this.conexion.createStatement();
             System.out.println("Conexión establecida");
+           
 
         } catch (Exception ex) {
             System.out.println(ex);

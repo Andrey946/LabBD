@@ -53,6 +53,11 @@ public class Frmregistro extends javax.swing.JFrame {
         Mregistrar.add(Mvehiculos);
 
         Msalidas.setText("Salidas");
+        Msalidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MsalidasActionPerformed(evt);
+            }
+        });
         Mregistrar.add(Msalidas);
 
         Mllegadas.setText("LLegadas");
@@ -121,6 +126,12 @@ public class Frmregistro extends javax.swing.JFrame {
         }
         this.setVisible(true);
     }//GEN-LAST:event_MconfigbdActionPerformed
+
+    private void MsalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsalidasActionPerformed
+        Vista.vistaSalidas Sal = new Vista.vistaSalidas();
+        escritorio.add(Sal);
+        Sal.show();            
+    }//GEN-LAST:event_MsalidasActionPerformed
 
     /**
      * @param args the command line arguments
