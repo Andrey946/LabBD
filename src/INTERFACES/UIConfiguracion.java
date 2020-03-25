@@ -27,7 +27,7 @@ public class UIConfiguracion extends javax.swing.JFrame {
         initComponents();
     }
     File archivo = new File("C:\\Users\\Andrey\\Documents\\AdministradorVehiculos\\config.ini");
-
+    Frmregistro reg=new Frmregistro();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,8 +172,10 @@ public class UIConfiguracion extends javax.swing.JFrame {
             archivo.createNewFile();
             FileWriter fw = new FileWriter(archivo, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("jdbc:" + cmbmotor.getSelectedItem() + "://" + txtservidor.getText() + "/practica?useServerPrepStmts=true" + "," + txtuser.getText() + "," + txtpass.getText());
+            //System.out.println("\"jdbc:mysql://localhost/practica?useServerPrepStmts=true\", \"root\", \"\"");
+            bw.write("\"jdbc:" + cmbmotor.getSelectedItem() +"://"+txtservidor.getText()+"/vehiculos?useServerPrepStmts=true\"" + ", \"" + txtuser.getText() + "\"," + "\""+txtpass.getText()+"\"");
             bw.flush();//
+            reg.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(UIConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
         }

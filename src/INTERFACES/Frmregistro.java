@@ -30,13 +30,14 @@ public class Frmregistro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        escritorio = new javax.swing.JDesktopPane();
         Menubar = new javax.swing.JMenuBar();
         Mregistrar = new javax.swing.JMenu();
         Mvehiculos = new javax.swing.JMenuItem();
         Msalidas = new javax.swing.JMenuItem();
         Mllegadas = new javax.swing.JMenuItem();
         Mconfiguracion = new javax.swing.JMenu();
+        Mconfigbd = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
@@ -44,6 +45,11 @@ public class Frmregistro extends javax.swing.JFrame {
         Mregistrar.setText("Registrar");
 
         Mvehiculos.setText("Vehículos");
+        Mvehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MvehiculosActionPerformed(evt);
+            }
+        });
         Mregistrar.add(Mvehiculos);
 
         Msalidas.setText("Salidas");
@@ -60,6 +66,20 @@ public class Frmregistro extends javax.swing.JFrame {
         Menubar.add(Mregistrar);
 
         Mconfiguracion.setText("Configuración");
+        Mconfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MconfiguracionActionPerformed(evt);
+            }
+        });
+
+        Mconfigbd.setText("Config.BD");
+        Mconfigbd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MconfigbdActionPerformed(evt);
+            }
+        });
+        Mconfiguracion.add(Mconfigbd);
+
         Menubar.add(Mconfiguracion);
 
         setJMenuBar(Menubar);
@@ -68,11 +88,11 @@ public class Frmregistro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
 
         pack();
@@ -81,6 +101,26 @@ public class Frmregistro extends javax.swing.JFrame {
     private void MllegadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MllegadasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MllegadasActionPerformed
+
+    private void MvehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MvehiculosActionPerformed
+        Vista.vistavehiculos c = new Vista.vistavehiculos();
+        escritorio.add(c);
+        c.show();
+    }//GEN-LAST:event_MvehiculosActionPerformed
+
+    private void MconfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MconfiguracionActionPerformed
+
+    }//GEN-LAST:event_MconfiguracionActionPerformed
+
+    private void MconfigbdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MconfigbdActionPerformed
+        UIConfiguracion config = new UIConfiguracion();
+        this.dispose();
+        config.setVisible(true);
+        while (config.isVisible()) {
+            this.dispose();
+        }
+        this.setVisible(true);
+    }//GEN-LAST:event_MconfigbdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,12 +158,13 @@ public class Frmregistro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Mconfigbd;
     private javax.swing.JMenu Mconfiguracion;
     private javax.swing.JMenuBar Menubar;
     private javax.swing.JMenuItem Mllegadas;
     private javax.swing.JMenu Mregistrar;
     private javax.swing.JMenuItem Msalidas;
     private javax.swing.JMenuItem Mvehiculos;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane escritorio;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,9 +1,15 @@
 package INTERFACES;
 
-
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,28 +29,33 @@ public class UIinicio extends javax.swing.JFrame {
      * Creates new form UIinicio
      */
     public UIinicio() {
-        
+
         initComponents();
         tiempo.start();
-        
+
     }
+
+    /*############################################*/
+    private Connection conexion;
+    private Statement sentencias;
+    private ResultSet datos;
+    /*#############################################33*/
     int i;
     File archivo = new File("C:\\Users\\Andrey\\Documents\\AdministradorVehiculos\\config.ini");
-    Thread tiempo = new Thread(){
+    Thread tiempo = new Thread() {
 
         public void run() {
             try {
                 for (int i = 1; i <= 100; i++) {
                     Jpinicio.setValue(i);
-                   if(i<=50){   
+                    if (i <= 50) {
                         lblinicio.setText("VALIDANDO");
-                   }else{
+                    } else {
                         lblinicio.setText("PRUEBA DE CONEXIÓN");
-                   }
-                   
-                
+                    }
+
                     tiempo.sleep(50);
-                    
+
                 }
                 validar();
             } catch (InterruptedException ex) {
@@ -53,22 +64,48 @@ public class UIinicio extends javax.swing.JFrame {
 
         }
 
-    } ;
+    };
 
-    public void validar(){
+    public void validar() {
         if (!archivo.exists()) {
             try {
                 JOptionPane.showMessageDialog(null, "NO SE PUDO CONECTAR A LA BASE DE DATOS.\n POR FAVOR CONFIGURE MANUALMENTE");
-                UIConfiguracion c=new UIConfiguracion();
+                UIConfiguracion c = new UIConfiguracion();
                 c.setVisible(true);
                 this.dispose();
             } catch (Exception ex) {
                 System.out.println("ERROR");
             }
-        }else{
+        } else {
+            conectar();
+            //Frmregistro reg = new Frmregistro();
+           // reg.setVisible(true);
             System.out.println("CONECTADO");
+            //this.dispose();
         }
     }
+
+    public void conectar() {
+
+
+
+        try {
+            FileReader fw = new FileReader(archivo);
+            BufferedReader bw = new BufferedReader(fw);
+           // System.out.println("\"jdbc:mysql://localhost/practica?useServerPrepStmts=true\", \"root\", \"\"");
+            System.out.println("\"jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true\", \"root\", \"\"");
+            //System.out.println(bw.readLine());
+            String s=bw.readLine();
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/practica?useServerPrepStmts=true", "root", "");
+            
+            this.sentencias = this.conexion.createStatement();
+            System.out.println("Conexión establecida");
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Vista.vistavehiculos;
+
 /**
  *
  * @author Andrey
@@ -13,6 +15,7 @@ public class vehiculo {
     private int Id;
     private String Placa;
     private String Descripcion;
+     private vistavehiculos view;
 
     public int getId() {
         return Id;
@@ -23,7 +26,7 @@ public class vehiculo {
     }
 
     public String getPlaca() {
-        return Placa;
+        return Placa=this.view.txtplaca.getText();
     }
 
     public void setPlaca(String Placa) {
@@ -31,7 +34,7 @@ public class vehiculo {
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return Descripcion=this.view.txtdescripcion.getText();
     }
 
     public void setDescripcion(String Descripcion) {

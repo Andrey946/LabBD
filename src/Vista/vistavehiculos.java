@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Controlador.controladorVehiculo;
+import INTERFACES.Frmregistro;
+import Modelo.vehiculo;
+
 /**
  *
  * @author Andrey
@@ -17,7 +21,7 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
     public vistavehiculos() {
         initComponents();
     }
-
+    private vehiculo carro;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,16 +63,41 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
         });
 
         btnnuevo.setText("Nuevo");
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevoActionPerformed(evt);
+            }
+        });
 
         btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
 
         btnmodificar.setText("Modificar");
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
 
         btncancelar.setText("Cancelar");
 
         btneliminar.setText("Eliminar");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
 
         btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +171,33 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
     private void txtdescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescripcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdescripcionActionPerformed
+
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
+    txtplaca.setText("");
+    txtdescripcion.setText("");
+    }//GEN-LAST:event_btnnuevoActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+       
+        Controlador.controladorVehiculo c=new controladorVehiculo(carro);
+       c.agregar(this,carro);
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        Controlador.controladorVehiculo c=new controladorVehiculo(carro);
+        c.actualizar(this,carro);
+    }//GEN-LAST:event_btnmodificarActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        Controlador.controladorVehiculo c=new controladorVehiculo(carro);
+        c.eliminar(this,carro);
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        Frmregistro n=new Frmregistro();
+        Buscador Vb=new Buscador(n, closable);
+        Vb.setVisible(true);
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
