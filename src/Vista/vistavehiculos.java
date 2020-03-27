@@ -8,6 +8,8 @@ package Vista;
 import Controlador.controladorVehiculo;
 import INTERFACES.Frmregistro;
 import Modelo.vehiculo;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +22,10 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
      */
     public vistavehiculos() {
         initComponents();
+        imagenes();
+        
     }
-    private vehiculo carro;
+    Modelo.vehiculo carro=new Modelo.vehiculo();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,12 +46,15 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
         btncancelar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnbuscar = new javax.swing.JButton();
+        img = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setText("                        Vehiculos");
+        jLabel1.setFont(new java.awt.Font("Bodoni MT Black", 2, 24)); // NOI18N
+        jLabel1.setText("  Vehiculos");
 
+        jLabel2.setFont(new java.awt.Font("Bodoni MT Black", 2, 12)); // NOI18N
         jLabel2.setText("Placa");
 
+        jLabel3.setFont(new java.awt.Font("Bodoni MT Black", 2, 12)); // NOI18N
         jLabel3.setText("Descripción");
 
         txtplaca.addActionListener(new java.awt.event.ActionListener() {
@@ -62,37 +69,36 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
             }
         });
 
-        btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnnuevoActionPerformed(evt);
             }
         });
 
-        btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
             }
         });
 
-        btnmodificar.setText("Modificar");
         btnmodificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnmodificarActionPerformed(evt);
             }
         });
 
-        btncancelar.setText("Cancelar");
+        btncancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelarActionPerformed(evt);
+            }
+        });
 
-        btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btneliminarActionPerformed(evt);
             }
         });
 
-        btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscarActionPerformed(evt);
@@ -104,11 +110,12 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(376, 376, 376)
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -119,45 +126,54 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
                                         .addComponent(txtplaca)
                                         .addGap(3, 3, 3)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1)
+                                        .addGap(70, 70, 70))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(3, 3, 3)
                                         .addComponent(txtdescripcion))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnnuevo)
+                                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnguardar)
+                                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnmodificar)
+                                .addComponent(btnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btncancelar)
+                                .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btneliminar)
+                                .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnbuscar)))))
-                .addContainerGap())
+                                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtplaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnnuevo)
-                    .addComponent(btnguardar)
-                    .addComponent(btnmodificar)
-                    .addComponent(btncancelar)
-                    .addComponent(btneliminar)
-                    .addComponent(btnbuscar))
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -178,9 +194,14 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-       
+      
         Controlador.controladorVehiculo c=new controladorVehiculo(carro);
-       c.agregar(this,carro);
+        if(txtplaca.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una placa");
+        }else{
+        //c.ValidarPK(carro);
+        c.agregar(this,carro);
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -199,6 +220,26 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
         Vb.setVisible(true);
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+        Controlador.controladorVehiculo c=new Controlador.controladorVehiculo(carro);
+      c.vehiculoactual(this);
+    }//GEN-LAST:event_btncancelarActionPerformed
+    public void imagenes(){
+        ImageIcon keys = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\uber.png");
+        img.setIcon(new ImageIcon(keys.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon ne = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\add.png");
+        btnnuevo.setIcon(new ImageIcon(ne.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon save = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\Save.png");
+        btnguardar.setIcon(new ImageIcon(save.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon modi = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\edit.png");
+        btnmodificar.setIcon(new ImageIcon(modi.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon cancel = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\cancel.png");
+        btncancelar.setIcon(new ImageIcon(cancel.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon del = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\del.png");
+        btneliminar.setIcon(new ImageIcon(del.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon find = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\finder.png");
+        btnbuscar.setIcon(new ImageIcon(find.getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnbuscar;
@@ -207,6 +248,7 @@ public class vistavehiculos extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnguardar;
     public javax.swing.JButton btnmodificar;
     public javax.swing.JButton btnnuevo;
+    private javax.swing.JLabel img;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

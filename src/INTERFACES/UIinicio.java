@@ -78,10 +78,10 @@ public class UIinicio extends javax.swing.JFrame {
             }
         } else {
             conectar();
-            //Frmregistro reg = new Frmregistro();
-           // reg.setVisible(true);
+            Frmregistro reg = new Frmregistro();
+            reg.setVisible(true);
             System.out.println("CONECTADO");
-            //this.dispose();
+            this.dispose();
         }
     }
 
@@ -100,6 +100,7 @@ public class UIinicio extends javax.swing.JFrame {
             
             this.sentencias = this.conexion.createStatement();
             System.out.println("Conexión establecida");
+            
            
 
         } catch (Exception ex) {
@@ -125,23 +126,22 @@ public class UIinicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(Jpinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(lblinicio)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(Jpinicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(lblinicio)
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(98, 98, 98)
                 .addComponent(lblinicio)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Jpinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();

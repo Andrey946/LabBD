@@ -6,6 +6,10 @@
 package Vista;
 
 import Controlador.controladorVehiculo;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +23,17 @@ public class Buscador extends javax.swing.JDialog {
     public Buscador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        imagenes();
+         ArrayList<String> nombrecolumna = new ArrayList<>();
+        nombrecolumna.add("Placa");
+        nombrecolumna.add("Descripción");
+        for (Object columna : nombrecolumna) {
+            modelo.addColumn(columna);
+        }
+        this.tblautos.setModel(modelo);
     }
     private Modelo.vehiculo carro;
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,15 +48,15 @@ public class Buscador extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        img2 = new javax.swing.JLabel();
+        img1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtdescripcion = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblautos = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnaceptar = new javax.swing.JButton();
+        btnback = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,38 +76,38 @@ public class Buscador extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Vehiculos");
-
-        jLabel2.setText("imagen");
-
-        jLabel3.setText("imagen");
+        jLabel1.setFont(new java.awt.Font("Bodoni MT Black", 2, 28)); // NOI18N
+        jLabel1.setText("Buscador");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addGap(116, 116, 116)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34))
+                .addGap(38, 38, 38)
+                .addComponent(img1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(img2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(21, 21, 21))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(img1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(img2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel4.setFont(new java.awt.Font("Bodoni MT Black", 2, 12)); // NOI18N
         jLabel4.setText("Descripción");
 
         txtdescripcion.addActionListener(new java.awt.event.ActionListener() {
@@ -129,14 +142,11 @@ public class Buscador extends javax.swing.JDialog {
             tblautos.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jButton1.setText("Acerptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnaceptarActionPerformed(evt);
             }
         });
-
-        jButton2.setText("Retroceder");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -155,9 +165,9 @@ public class Buscador extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(jButton2)
+                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -171,8 +181,8 @@ public class Buscador extends javax.swing.JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -201,23 +211,42 @@ public class Buscador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtdescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescripcionActionPerformed
-        // TODO add your handling code here:
+        Controlador.controladorVehiculo ne = new controladorVehiculo(carro);
+        if (this.txtdescripcion.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese una descripcion");
+        } else {
+            modelo.setRowCount(0);
+            ArrayList<Object[]> autos = ne.listar(this, this.txtdescripcion.getText());
+            cargaAutomatica(autos);
+        }
     }//GEN-LAST:event_txtdescripcionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Controlador.controladorVehiculo ne=new controladorVehiculo(carro);
-       ne.listar(this, this.txtdescripcion.getText());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
+    }//GEN-LAST:event_btnaceptarActionPerformed
+    public void cargaAutomatica(ArrayList<Object[]> datos) {
+       
+
+        for (Object[] datopersonal : datos) {
+            modelo.addRow(datopersonal);
+        }
+        tblautos.setModel(modelo);
+
+    }
+
+    public void imagenes() {
+        ImageIcon keys = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\document.png");
+        img1.setIcon(new ImageIcon(keys.getImage().getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH)));
+        img2.setIcon(new ImageIcon(keys.getImage().getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon save = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\aceptar.png");
+        btnaceptar.setIcon(new ImageIcon(save.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+        ImageIcon modi = new ImageIcon("C:\\Users\\Andrey\\Documents\\NetBeansProjects\\LaboratorioBD\\src\\Iconos\\back.png");
+        btnback.setIcon(new ImageIcon(modi.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+    }
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -234,9 +263,7 @@ public class Buscador extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Buscador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Buscador dialog = new Buscador(new javax.swing.JFrame(), true);
@@ -252,11 +279,11 @@ public class Buscador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnaceptar;
+    private javax.swing.JButton btnback;
+    private javax.swing.JLabel img1;
+    private javax.swing.JLabel img2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

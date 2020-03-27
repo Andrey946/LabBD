@@ -13,6 +13,7 @@ import java.sql.Time;
  * @author Andrey
  */
 public class bitacora {
+
     private int id;
     private String Placa;
     private String Provincia;
@@ -57,16 +58,16 @@ public class bitacora {
     }
 
     public Date getFechaSalida() {
-        if(getFechaLlegada().compareTo(getFechaSalida())==0){
-            
+        if (getFechaLlegada().compareTo(getFechaSalida()) == 0) {
+
         }
-        
+
         return fechaSalida;
     }
 
     public void setFechaSalida(Date fechaSalida) {
-       this.fechaSalida = fechaSalida;
-        
+        this.fechaSalida = fechaSalida;
+
     }
 
     public Time getHoraSalida() {
@@ -108,7 +109,49 @@ public class bitacora {
     public void setKmFinal(int kmFinal) {
         this.kmFinal = kmFinal;
     }
-    
-    
-    
+
+    public bitacora() {
+        this.id = 0;
+        this.Placa = "";
+        this.Provincia = "";
+        this.Destino = "";
+        this.fechaSalida = null;
+        this.horaSalida = null;
+        this.kmInicial = 0;
+        this.fechaLlegada = null;
+        this.horaLlegada = null;
+        this.kmFinal = 0;
+    }
+
+    public bitacora(int id, String Placa, String Provincia, String Destino, Date fechaSalida, Time horaSalida, int kmInicial, Date fechaLlegada, Time horaLlegada, int kmFinal) {
+        this.id = id;
+        this.Placa = Placa;
+        this.Provincia = Provincia;
+        this.Destino = Destino;
+        this.fechaSalida = fechaSalida;
+        this.horaSalida = horaSalida;
+        this.kmInicial = kmInicial;
+        this.fechaLlegada = fechaLlegada;
+        this.horaLlegada = horaLlegada;
+        this.kmFinal = kmFinal;
+    }
+
+    public bitacora(String Placa) {
+        this.id = 0;
+        this.Placa = Placa;
+        this.Provincia = "";
+        this.Destino = "";
+        this.fechaSalida = null;
+        this.horaSalida = null;
+        this.kmInicial = 0;
+        this.fechaLlegada = null;
+        this.horaLlegada = null;
+        this.kmFinal = 0;
+    }
+
+    public boolean comprobar() {
+        return (this.id != 0) && (!this.Placa.equals("")) && (!this.Placa.equals("")) && (!this.Provincia.equals(""))
+                && (this.Destino.equals("")) && (this.fechaSalida != null) && (this.horaSalida != null) && (this.kmInicial != 0);
+    }
+
 }

@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,12 +45,20 @@ public class controladorVehiculo extends Modelo.vehiculo {
 
         this.carro = carro;
     }
+    int num = 0;
 
     public boolean agregar(vistavehiculos view, vehiculo carro) {
         conectar();
         try {
+            this.datos = this.sentencias.executeQuery("select * from vehiculos WHERE Placa  LIKE '%" + view.txtplaca.getText() + "%' AND Descripcion LIKE '%" + view.txtdescripcion.getText() + "%' ");
 
-            this.sentencias.executeUpdate("insert into vehiculos values(null,'" + view.txtplaca.getText() + "','" + view.txtdescripcion.getText() + "')");
+            if (this.datos.next()) {
+                JOptionPane.showMessageDialog(null, " Ya existe ese vehículo ", "Error", 2);
+            } else {
+                this.sentencias.executeUpdate("insert into vehiculos values(null,'" + view.txtplaca.getText() + "','" + view.txtdescripcion.getText() + "')");
+                JOptionPane.showMessageDialog(null, "Agregado Correctamente ");
+            }
+
             return true;
         } catch (SQLException ex) {
             System.out.println("Error al Agregar");
@@ -92,22 +102,50 @@ public class controladorVehiculo extends Modelo.vehiculo {
 
     public ArrayList listar(Buscador buscador, String descrip) {
         conectar();
+
+        ArrayList<Object> al = new ArrayList();
+        ArrayList<Object[]> ak = new ArrayList<>();
         try {
             this.datos = this.sentencias.executeQuery("select * from vehiculos WHERE Descripcion  LIKE '%" + buscador.txtdescripcion.getText() + "%'");
-            if (this.datos.next()) {
-                System.out.println(datos.getInt(1));
-                System.out.println(datos.getString(2));
-                System.out.println(datos.getString(3));
-            } else {
-                System.out.println("NO HAY MAS REGISTROS");
+
+            while (this.datos.next()) {
+                al.add((Object) datos.getInt(2));
+
+                al.add((Object) datos.getString(3));
+
+                Object[] ap = al.toArray();
+                ak.add(ap);
             }
+
+            System.out.println("NO HAY MAS REGISTROS");
+
+            for (int i = 0; i < al.size(); i++) {
+                System.out.print(al.get(i));
+            }
+
+            return ak;
         } catch (SQLException ex) {
             System.out.println("Error en el Read");
         }
         return null;
     }
+    
 
-    public boolean ValidarPK(vistavehiculos view, vehiculo carro) {
+    public boolean ValidarPK(vehiculo carro) {
+
+        try {
+            this.datos = this.sentencias.executeQuery("select * from vehiculo where vehiculo='" + carro + "'");
+
+            while (this.datos.next()) {
+                System.out.println(datos.getInt(1));
+                System.out.println(datos.getString(2));
+                System.out.println(datos.getString(3));
+            }
+            System.out.println("NO HAY MAS REGISTROS");
+
+        } catch (SQLException ex) {
+            System.out.println("Error en el Read");
+        }
 
         return true;
     }
@@ -115,6 +153,20 @@ public class controladorVehiculo extends Modelo.vehiculo {
     public boolean validarFK(vistavehiculos view, vehiculo carro) {
 
         return true;
+    }
+    
+    public void vehiculoactual(vistavehiculos view){
+         conectar();
+        try {
+            this.datos = this.sentencias.executeQuery("SELECT * FROM vehiculos order by Id desc limit 1");
+                 while(this.datos.next()) {
+                view.txtplaca.setText(datos.getString(2));
+                view.txtdescripcion.setText(datos.getString(3));
+            }
+    
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
 }
